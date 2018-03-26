@@ -1,0 +1,70 @@
+<html lang="en" dir="ltr" class="client-js ve-not-available">
+  <head>
+    <title>ORES support checklist</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/oojs-ui-static/oojs-ui-mediawiki.css" />
+    <link rel="stylesheet" type="text/css" href="https://en.wikipedia.org/w/load.php?debug=false&lang=en&modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cskins.vector.styles&only=styles&skin=vector" />
+    <style>
+      body {
+        background: #fff;
+        margin: 0px 2em;
+      }
+    </style>
+    <meta name="description" content="List of wikis ORES support and degree of support"/>
+  </head>
+  <body class="mediawiki ltr sitedir-ltr ns-4 ns-subject page-Wikipedia_Labels
+               skin-vector action-view webfonts-changed">
+    <style type="text/css">
+    html {
+      background: #eaecf0;
+    }
+    body {
+      max-width: 50em;
+      margin: 0px auto;
+      padding: 1em 2em;
+      background: #fff;
+    }
+    </style>
+    <div id="bodyContent" class="mw-body-content">
+      <div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
+          <h1 id="firstHeading" class="firstHeading" lang="en">ORES support checklist</h1>
+          <div class="lead">
+                {% if wikis %}
+                <h3>Wikis</h3>
+                Last updated on {{ update }}
+                <table class="wikitable" style="margin: 1em;"><tbody><tr><th rowspan="3">Wiki</th><th colspan="3"><a href="https://www.mediawiki.org/wiki/ORES#Edit_quality" title="ORES">edit quality</a>
+</th><th colspan="4"><a href="https://www.mediawiki.org/wiki/ORES#Article_quality" title="ORES">article quality</a>
+</th></tr><tr>
+<td rowspan="2">Basic support
+</td>
+<td colspan="2">Advanced support
+</td>
+<td colspan="2"><code>wp10</code>
+</td>
+<td colspan="2"><code>draftquality</code>
+</td></tr>
+<tr>
+<td>Labeling campaign</td>
+<td>model</td>
+<td>Labeling campaign</td>
+<td>model</td>
+<td>Labeling campaign</td>
+<td>model</td>
+</td></tr>
+                {% for wiki_name, wiki_data in wikis|dictsort %}
+                <tr><td>{{ wiki_name }}</td>
+<td>{% if ( wiki_data['models'] and wiki_data['models']['reverted'] ) %}<a href="https://ores.wikimedia.org/v3/scores/{{wiki_name}}"><img alt="Yes check.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/10px-Yes_check.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/15px-Yes_check.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/20px-Yes_check.svg.png 2x" data-file-width="600" data-file-height="600" width="10" height="10"></a>{% else %}{% if ( wiki_data['models'] and wiki_data['models']['damaging'] ) %}n/a{% endif %}{% endif %}</td>
+<td>{% if ( wiki_data['campaigns'] and wiki_data['campaigns']['damaging_and_goodfaith'] ) %}<small><a href="https://labels.wmflabs.org/stats/{{wiki_name}}/{{wiki_data['campaigns']['damaging_and_goodfaith']['id']}}">{{ '%d' | format((wiki_data['campaigns']['damaging_and_goodfaith']['done'] * 100) /wiki_data['campaigns']['damaging_and_goodfaith']['total']|float) }}%</a></smal>{% endif %}</td>
+<td>{% if ( wiki_data['models'] and wiki_data['models']['damaging'] ) %}<a href="https://ores.wikimedia.org/v3/scores/{{wiki_name}}"><img alt="Yes check.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/10px-Yes_check.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/15px-Yes_check.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/20px-Yes_check.svg.png 2x" data-file-width="600" data-file-height="600" width="10" height="10"></a>{% endif %}</td>
+<td>{% if ( wiki_data['campaigns'] and wiki_data['campaigns']['wp10'] ) %}<small><a href="https://labels.wmflabs.org/stats/{{wiki_name}}/{{wiki_data['campaigns']['wp10']['id']}}">{{ '%d' | format((wiki_data['campaigns']['wp10']['done'] * 100) /wiki_data['campaigns']['wp10']['total']|float) }}%</a></smal>{% endif %}</td>
+<td>{% if ( wiki_data['models'] and wiki_data['models']['wp10'] ) %}<a href="https://ores.wikimedia.org/v3/scores/{{wiki_name}}"><img alt="Yes check.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/10px-Yes_check.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/15px-Yes_check.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/20px-Yes_check.svg.png 2x" data-file-width="600" data-file-height="600" width="10" height="10"></a>{% endif %}</td>
+<td>{% if ( wiki_data['campaigns'] and wiki_data['campaigns']['draftquality'] ) %}<small><a href="https://labels.wmflabs.org/stats/{{wiki_name}}/{{wiki_data['campaigns']['draftquality']['id']}}">{{ '%d' | format((wiki_data['campaigns']['draftquality']['done'] * 100) /wiki_data['campaigns']['draftquality']['total']|float) }}%</a></smal>{% endif %}</td>
+<td>{% if ( wiki_data['models'] and wiki_data['models']['draftquality'] ) %}<a href="https://ores.wikimedia.org/v3/scores/{{wiki_name}}"><img alt="Yes check.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/10px-Yes_check.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/15px-Yes_check.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Yes_check.svg/20px-Yes_check.svg.png 2x" data-file-width="600" data-file-height="600" width="10" height="10"></a>{% endif %}</td>
+                {% endfor %}
+                </tbody></table>
+                {% endif %}
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
