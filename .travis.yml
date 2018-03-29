@@ -1,0 +1,22 @@
+language: python
+sudo: true
+python:
+  - "3.5"
+
+install:
+  - pip install pip --upgrade
+  - pip install wheel
+  - travis_wait pip install -r requirements.txt || date
+script:
+  - flake8 .
+group: stable
+dist: trusty
+os: linux
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#wikimedia-ai"
+    on_success: change
+    on_failure: change
+    template:
+      - "%{repository_slug}#%{build_number} (%{branch} - %{commit} : %{author}): %{message} %{build_url}"

@@ -21,12 +21,12 @@ import flask
 import os
 import json
 import werkzeug.contrib.fixers
-import yaml
 import time
 
 
 app = flask.Flask(__name__)
 app.wsgi_app = werkzeug.contrib.fixers.ProxyFix(app.wsgi_app)
+
 
 @app.route('/')
 def index():

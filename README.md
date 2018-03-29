@@ -8,7 +8,7 @@ built to show ORES support for different wikis
 $ ssh tools-dev.wmflabs.org
 $ become $TOOL_NAME
 $ mkdir -p $HOME/www/python
-$ git clone https://phabricator.wikimedia.org/source/tool-my-first-flask-oauth-tool.git \
+$ git clone https://github.com/wiki-ai/ores-support-checklist \
   $HOME/www/python/src
 $ touch $HOME/www/python/src/config.yaml
 $ chmod u=rw,go= $HOME/www/python/src/config.yaml
