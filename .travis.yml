@@ -6,7 +6,8 @@ python:
 install:
   - pip install pip --upgrade
   - pip install wheel
-  - travis_wait pip install -r requirements.txt || date
+  - pip install -r requirements.txt || date
+  - pip install -r test-requirements.txt || date
 script:
   - flake8 .
 group: stable
