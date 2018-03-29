@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/wiki-ai/ores-support-checklist.svg?branch=master)](https://travis-ci.org/wiki-ai/ores-support-checklist)
 ORES support checklist
 =========================
 
