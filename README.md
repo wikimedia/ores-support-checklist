@@ -5,6 +5,9 @@ ORES support checklist
 This git repository contains the source code for a basic Python webservice
 built to show ORES support for different wikis
 
+Running from Tool Labs
+-----
+
 ```
 $ ssh tools-dev.wmflabs.org
 $ become $TOOL_NAME
@@ -20,6 +23,14 @@ $ pip install --upgrade pip
 $ pip install -r $HOME/www/python/src/requirements.txt
 $ exit
 $ webservice --backend=kubernetes python start
+```
+
+Running locally
+-----
+
+```
+$ pip install flask-cli
+$ FLASK_APP=app.py flask run
 ```
 
 License
