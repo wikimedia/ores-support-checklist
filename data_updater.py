@@ -1,22 +1,15 @@
+import deep_merge
 import requests
 import time
 import json
 import os
+import yamlconf
 
-from collections import defaultdict, Mapping
-
-
-def update(d, u):
-    for k, v in u.items():
-        if isinstance(v, Mapping):
-            d[k] = update(d.get(k, {}), v)
-        else:
-            d[k] = v
-    return d
+from collections import defaultdict
 
 
-def get_ores_data():
-    r = requests.get('https://ores.wikimedia.org/v3/scores/')
+def get_ores_data(ores_host):
+    r = requests.get(ores_host + '/v3/scores/')
     return r.json()
 
 
@@ -40,8 +33,8 @@ def get_wikilabels_data_per_wiki(base_url, wiki):
     return parsed_data
 
 
-def get_wikilabels_data():
-    base_url = 'https://labels.wmflabs.org/campaigns/'
+def get_wikilabels_data(wikilables_host):
+    base_url = wikilables_host + '/campaigns/'
     wikis = requests.get(base_url).json()['wikis']
     data = defaultdict(dict)
     for wiki in wikis:
@@ -52,8 +45,12 @@ def get_wikilabels_data():
 
 
 def main():
-    data = get_ores_data()
-    data = update(data, get_wikilabels_data())
+    config_path = os.path.dirname(os.path.abspath(__file__)) + '/config.yaml'
+    with open(config_path, 'r') as f:
+        config = yamlconf.load(f)
+    data = get_ores_data(config['ores_host'])
+    data = deep_merge.merge(
+        data, get_wikilabels_data(config['wikilabels_host']))
     data = {'data': data, 'timestamp': time.time()}
     path = os.path.dirname(os.path.abspath(__file__)) + '/static/data.json'
     with open(path, 'w') as f:
