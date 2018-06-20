@@ -1,5 +1,9 @@
-cd /data/project/ores-support-checklist/www/python/src
+#!/bin/bash -x
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
+PY_BIN="${ROOT_DIR}/venv/bin/python"
+
+cd "${ROOT_DIR}/src"
 git pull
 webservice restart
-source /data/project/ores-support-checklist/www/python/venv/bin/activate
-python data_updater.py
+${PY_BIN} data_updater.py
