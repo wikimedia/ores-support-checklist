@@ -1,2 +1,4 @@
 flask
-pyyaml
+yamlconf
+deep_merge
+pyyaml == 3.11

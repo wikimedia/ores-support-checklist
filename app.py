@@ -22,6 +22,7 @@ import os
 import json
 import werkzeug.contrib.fixers
 import time
+import yamlconf
 
 
 app = flask.Flask(__name__)
@@ -33,8 +34,12 @@ def index():
     """Application landing page."""
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
     json_url = os.path.join(SITE_ROOT, 'static', 'data.json')
+    config_path = os.path.dirname(os.path.abspath(__file__)) + '/config.yaml'
+    with open(config_path, 'r') as f:
+        config = yamlconf.load(f)
     data = json.load(open(json_url))
     wikis = data['data']
     update = time.strftime("%d %B %Y %H:%M:%S UTC",
                            time.gmtime(data['timestamp']))
-    return flask.render_template('index.html', wikis=wikis, update=update)
+    return flask.render_template('index.html', wikis=wikis, update=update,
+                                 **config)
