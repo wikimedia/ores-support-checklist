@@ -29,6 +29,18 @@ app = flask.Flask(__name__)
 app.wsgi_app = werkzeug.contrib.fixers.ProxyFix(app.wsgi_app)
 
 
+def transform_data(wikis):
+    # Turn itemquality to wp10
+    MODELS = 'models'
+    ITEMQUALITY = 'itemquality'
+    for wiki in wikis:
+        if ITEMQUALITY in wikis[wiki].get(MODELS, {}):
+            wikis[wiki][MODELS]['wp10'] = wikis[wiki][MODELS][ITEMQUALITY]
+            del wikis[wiki][MODELS][ITEMQUALITY]
+
+    return wikis
+
+
 @app.route('/')
 def index():
     """Application landing page."""
@@ -38,7 +50,7 @@ def index():
     with open(config_path, 'r') as f:
         config = yamlconf.load(f)
     data = json.load(open(json_url))
-    wikis = data['data']
+    wikis = transform_data(data['data'])
     update = time.strftime("%d %B %Y %H:%M:%S UTC",
                            time.gmtime(data['timestamp']))
     return flask.render_template('index.html', wikis=wikis, update=update,
