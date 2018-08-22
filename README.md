@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wiki-ai/ores-support-checklist.svg?branch=master)](https://travis-ci.org/wiki-ai/ores-support-checklist)
+[![Build Status](https://travis-ci.org/wikimedia/ores-support-checklist.svg?branch=master)](https://travis-ci.org/wikimedia/ores-support-checklist)
 ORES support checklist
 =========================
 
@@ -12,7 +12,7 @@ Running from Tool Labs
 $ ssh tools-dev.wmflabs.org
 $ become $TOOL_NAME
 $ mkdir -p $HOME/www/python
-$ git clone https://github.com/wiki-ai/ores-support-checklist \
+$ git clone https://github.com/wikimedia/ores-support-checklist \
   $HOME/www/python/src
 $ touch $HOME/www/python/src/config.yaml
 $ chmod u=rw,go= $HOME/www/python/src/config.yaml
