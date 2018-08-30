@@ -17,7 +17,7 @@ def get_wikilabels_data_per_wiki(base_url, wiki):
     parsed_data = {}
     valid_forms = [
         'damaging_and_goodfaith',
-        'wp10',
+        'articlequality',
         'draftquality',
         'edit_type'
     ]

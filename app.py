@@ -30,12 +30,12 @@ app.wsgi_app = werkzeug.contrib.fixers.ProxyFix(app.wsgi_app)
 
 
 def transform_data(wikis):
-    # Turn itemquality to wp10
+    # Turn itemquality to articlequality
     MODELS = 'models'
     ITEMQUALITY = 'itemquality'
     for wiki in wikis:
         if ITEMQUALITY in wikis[wiki].get(MODELS, {}):
-            wikis[wiki][MODELS]['wp10'] = wikis[wiki][MODELS][ITEMQUALITY]
+            wikis[wiki][MODELS]['articlequality'] = wikis[wiki][MODELS][ITEMQUALITY]
             del wikis[wiki][MODELS][ITEMQUALITY]
 
     return wikis
