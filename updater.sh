@@ -5,5 +5,5 @@ PY_BIN="${ROOT_DIR}/venv/bin/python"
 
 cd "${ROOT_DIR}/src"
 git pull
-webservice restart
+/usr/local/bin/webservice restart &
 ${PY_BIN} data_updater.py

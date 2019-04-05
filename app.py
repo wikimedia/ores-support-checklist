@@ -35,7 +35,8 @@ def transform_data(wikis):
     ITEMQUALITY = 'itemquality'
     for wiki in wikis:
         if ITEMQUALITY in wikis[wiki].get(MODELS, {}):
-            wikis[wiki][MODELS]['articlequality'] = wikis[wiki][MODELS][ITEMQUALITY]
+            wikis[wiki][MODELS]['articlequality'] = \
+                    wikis[wiki][MODELS][ITEMQUALITY]
             del wikis[wiki][MODELS][ITEMQUALITY]
 
     return wikis
